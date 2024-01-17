@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://busi5vx80lqt8"]
+
+[ext_resource type="PackedScene" uid="uid://cjrf6ki5l4c52" path="res://collectables/collectable.tscn" id="1_wba2c"]
+[ext_resource type="Texture2D" uid="uid://bda3416tlmjvn" path="res://ilustrador-pocion-vector-pixeles_685023-2162.png" id="2_vu7cf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b0jjq"]
+radius = 6.0
+height = 26.0
+
+[node name="leandrank" instance=ExtResource("1_wba2c")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_b0jjq")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.041, 0.043)
+texture = ExtResource("2_vu7cf")

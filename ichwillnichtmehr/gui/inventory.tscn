@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2pqevuf7sx4t"]
+
+[ext_resource type="Texture2D" uid="uid://bid3oyf1wryoi" path="res://InventoryRect.png" id="1_af41p"]
+[ext_resource type="Script" path="res://gui/inventory.gd" id="1_xsbnj"]
+[ext_resource type="PackedScene" uid="uid://behbn43d0oyq3" path="res://gui/slot_gui.tscn" id="2_wfxly"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 148.0
+offset_bottom = 69.0
+script = ExtResource("1_xsbnj")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 148.0
+offset_bottom = 69.0
+texture = ExtResource("1_af41p")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -8.0
+offset_right = 114.0
+offset_bottom = 36.0
+columns = 5
+
+[node name="Slot" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
+
+[node name="Slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
+
+[node name="Slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
+
+[node name="Slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
+
+[node name="Slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
+
+[node name="Slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
+
+[node name="Slot7" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
+
+[node name="Slot8" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
+
+[node name="Slot9" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
+
+[node name="Slot10" parent="NinePatchRect/GridContainer" instance=ExtResource("2_wfxly")]
+layout_mode = 2
