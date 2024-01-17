@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://d1arpjvqpx162"]
+[gd_scene load_steps=48 format=3 uid="uid://d1arpjvqpx162"]
 
 [ext_resource type="Script" path="res://skripte/character_body_2d.gd" id="1_ydqq4"]
 [ext_resource type="Texture2D" uid="uid://chp8p8vsqyvl8" path="res://Tiny Swords (2)/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Purple/Warrior_Purple.png" id="2_3wfrk"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://skripte/CanvasLayer.gd" id="3_ycfsx"]
 [ext_resource type="Script" path="res://InventoryGui.gd" id="5_eupei"]
 [ext_resource type="PackedScene" uid="uid://651vldd0xus0" path="res://inventory/leandrank_inventory.tscn" id="6_3j2sg"]
+[ext_resource type="Texture2D" uid="uid://dhx1be03spd6a" path="res://Tiny Swords (2)/Tiny Swords (Update 010)/UI/Buttons/Button_Disable.png" id="6_4b45b"]
 [ext_resource type="PackedScene" uid="uid://dbpv42spacp3n" path="res://inventory/items/xanny_drank_inventory.tscn" id="7_issje"]
+[ext_resource type="PackedScene" uid="uid://bipd2fpym845g" path="res://collectables/mdma_drank_inventory.tscn" id="9_fsnj4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g42si"]
 radius = 21.0
@@ -390,6 +392,23 @@ script = ExtResource("5_eupei")
 
 [node name="speed_potion" type="Timer" parent="."]
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-490, 250)
+texture = ExtResource("6_4b45b")
+offset = Vector2(0, 4)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-490, 204)
+texture = ExtResource("6_4b45b")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-490, 154)
+texture = ExtResource("6_4b45b")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(-490, 104)
+texture = ExtResource("6_4b45b")
+
 [node name="leandrankInventory1" parent="." instance=ExtResource("6_3j2sg")]
 visible = false
 position = Vector2(-490, 250)
@@ -423,10 +442,26 @@ position = Vector2(-490, 150)
 visible = false
 position = Vector2(-490, 100)
 
+[node name="MDMADrankInventory1" parent="." instance=ExtResource("9_fsnj4")]
+visible = false
+position = Vector2(-490, 250)
+
+[node name="MDMADrankInventory2" parent="." instance=ExtResource("9_fsnj4")]
+visible = false
+position = Vector2(-490, 200)
+
+[node name="MDMADrankInventory3" parent="." instance=ExtResource("9_fsnj4")]
+visible = false
+position = Vector2(-490, 150)
+
+[node name="MDMADrankInventory4" parent="." instance=ExtResource("9_fsnj4")]
+visible = false
+position = Vector2(-490, 100)
+
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
-[connection signal="timeout" from="regin_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]
+[connection signal="timeout" from="regin_timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="sword_hitbox_position/hitbox_player" to="." method="_on_hitbox_player_body_entered"]
 [connection signal="body_exited" from="sword_hitbox_position/hitbox_player" to="." method="_on_hitbox_player_body_exited"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

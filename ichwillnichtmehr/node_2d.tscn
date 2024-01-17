@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://jlhugcjewelo"]
+[gd_scene load_steps=8 format=3 uid="uid://jlhugcjewelo"]
 
 [ext_resource type="PackedScene" uid="uid://d1arpjvqpx162" path="res://skripte/character_body_2d.tscn" id="1_7ev8y"]
 [ext_resource type="PackedScene" uid="uid://bphupf784l1gx" path="res://skripte/enemi.tscn" id="2_tqc1u"]
 [ext_resource type="PackedScene" uid="uid://busi5vx80lqt8" path="res://collectables/leandrank.tscn" id="3_fujqf"]
 [ext_resource type="PackedScene" uid="uid://0h3fcuatwe86" path="res://inventory/items/xannydrank.tscn" id="4_qgcoh"]
+[ext_resource type="PackedScene" uid="uid://bilsfss8qk3cb" path="res://collectables/mdm_adrank.tscn" id="5_g7tk0"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xnywt"]
 resource_name = "Collectables"
@@ -48,3 +49,9 @@ position = Vector2(107, 41)
 
 [node name="xannydrank" parent="." instance=ExtResource("4_qgcoh")]
 position = Vector2(224, 328)
+
+[node name="MDMAdrank" parent="." instance=ExtResource("5_g7tk0")]
+position = Vector2(192, 476)
+
+[node name="MDMAdrank2" parent="." instance=ExtResource("5_g7tk0")]
+position = Vector2(54, 200)

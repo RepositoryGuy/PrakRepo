@@ -8,6 +8,7 @@ var player_alive = true
 
 var powerpotion = false
 var speedpotion = false
+var armorpotion = false
 
 @onready var power = 20
 
@@ -26,6 +27,7 @@ var was_item_collected = false
 var item_name = "none"
 var speed = 350
 
+var damage_enemi = 20
 
 var slotnumber = 0
 
@@ -50,9 +52,10 @@ func _physics_process(delta):
 				$leandrankInventory1.visible = true
 			if item_slot1 == "xannydrank":
 				$XannydrankInventory1.visible = true
+			if item_slot1 == "MDMAdrank":
+				$MDMADrankInventory1.visible = true
 			print("slot1  ", slot1)
 			was_item_collected = false
-			
 			
 		if Input.is_action_just_pressed("slot2") && slot2 == false:
 			slot2 = true 
@@ -61,8 +64,11 @@ func _physics_process(delta):
 				$leandrankInventory2.visible = true
 			if item_slot2 == "xannydrank":
 				$XannydrankInventory2.visible = true
+			if item_slot2 == "MDMAdrank":
+				$MDMADrankInventory2.visible = true
 			print("slot2  ", slot2)
 			was_item_collected = false
+			
 		if Input.is_action_just_pressed("slot3") && slot3 == false:
 			slot3 = true 
 			item_slot3 = item_name
@@ -70,8 +76,11 @@ func _physics_process(delta):
 				$leandrankInventory3.visible = true
 			if item_slot3 == "xannydrank":
 				$XannydrankInventory3.visible = true
+			if item_slot3 == "MDMAdrank":
+				$MDMADrankInventory3.visible = true
 			print("slot3  ", slot3)
 			was_item_collected = false
+			
 		if Input.is_action_just_pressed("slot4") && slot4 == false:
 			slot4 = true 
 			item_slot4 = item_name
@@ -79,6 +88,8 @@ func _physics_process(delta):
 				$leandrankInventory4.visible = true
 			if item_slot4 == "xannydrank":
 				$XannydrankInventory4.visible = true
+			if item_slot4 == "MDMAdrank":
+				$MDMADrankInventory4.visible = true
 			print("slot4  ", slot4)
 			was_item_collected = false
 			
@@ -90,13 +101,15 @@ func _physics_process(delta):
 			if item_slot1 == "leandrank":
 				$leandrankInventory1.visible = false
 				speed = 600
-				slotnumber = (slotnumber - 1)
 				speedpotion = true 
 			if item_slot1 == "xannydrank":
 				$XannydrankInventory1.visible = false
 				var ref_a = get_tree().current_scene.get_node("enemi")
 				ref_a.power_up()
-				slotnumber = (slotnumber - 1)
+			if item_slot1 == "MDMAdrank":
+				$MDMADrankInventory1.visible = false
+				armorpotion = true
+			slotnumber = (slotnumber - 1)
 			item_slot1 = "none"
 			slot1 = false
 	if slot2 == true :
@@ -105,13 +118,15 @@ func _physics_process(delta):
 			if item_slot2 == "leandrank":
 				$leandrankInventory2.visible = false
 				speed = 600
-				slotnumber = (slotnumber - 1)
 				speedpotion = true 
 			if item_slot2 == "xannydrank":
-				$XannydrankInventory1.visible = false
+				$XannydrankInventory2.visible = false
 				var ref_a = get_tree().current_scene.get_node("enemi")
 				ref_a.power_up()
-				slotnumber = (slotnumber - 1)
+			if item_slot2 == "MDMAdrank":
+				$MDMADrankInventory2.visible = false
+				armorpotion = true
+			slotnumber = (slotnumber - 1)
 			item_slot2 = "none"
 			slot2 = false
 	if slot3 == true :
@@ -119,14 +134,16 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("slot3"):
 			if item_slot3 == "leandrank":
 				$leandrankInventory3.visible = false
-				speed = 600
-				slotnumber = (slotnumber - 1)
+				speed = 600 - 1
 				speedpotion = true 
 			if item_slot3 == "xannydrank":
 				$XannydrankInventory1.visible = false
 				var ref_a = get_tree().current_scene.get_node("enemi")
 				ref_a.power_up()
-				slotnumber = (slotnumber - 1)
+			if item_slot3 == "MDMAdrank":
+				$MDMADrankInventory3.visible = false
+				armorpotion = true
+			slotnumber = (slotnumber - 1)
 			item_slot3 = "none"
 			slot3 = false
 	if slot4 == true :
@@ -135,33 +152,46 @@ func _physics_process(delta):
 			if item_slot4 == "leandrank":
 				$leandrankInventory4.visible = false
 				speed = 600
-				slotnumber = (slotnumber - 1)
 				speedpotion = true
 			if item_slot4 == "xannydrank":
 				$XannydrankInventory1.visible = false
 				var ref_a = get_tree().current_scene.get_node("enemi")
 				ref_a.power_up()
-				slotnumber = (slotnumber - 1)
+			if item_slot4 == "MDMAdrank":
+				$MDMADrankInventory4.visible = false
+				armorpotion = true
+			slotnumber = (slotnumber - 1)
 			item_slot4 = "none"
 			slot4 = false
 				
 	if speedpotion == true :
 		speed_potion_end()
-		
+	if armorpotion == true :
+		armor_potion_end()
 	if health <= 0:
 		player_alive = false
 		health = 0
 		print("du bist tot digga opfer 3$ to revive")
 		self.queue_free()
 		
+func armor_potion_end():
+	armorpotion = false
+	damage_enemi = 10
+	await get_tree().create_timer(30).timeout
+	damage_enemi = 20
+	
+
 
 func speed_potion_end():
 	speedpotion = false
+	$Camera2D.zoom.x = 0.8
+	$Camera2D.zoom.y = 0.8
 	await get_tree().create_timer(10).timeout
 	speed = 350
+	$Camera2D.zoom.x = 1
+	$Camera2D.zoom.y = 1
 	print("eeee")
 	
-
 
 func player_movement(delta):
 	if attack_ip == false:
@@ -232,7 +262,7 @@ func player():
 
 func enemi_attack():
 	if  enemi_attack_cooldown == true:
-		health = health - 20 
+		health = health - damage_enemi
 		enemi_attack_cooldown = false
 		print("health =", health)
 		if health <= 0:
@@ -301,22 +331,26 @@ func collectlean():
 	slotnumber = (slotnumber + 1)
 	item_name = "leandrank"
 	was_item_collected = true
-	
 func collectxanny():
 	slotnumber = (slotnumber + 1)
 	item_name = "xannydrank"
 	was_item_collected = true
-
+func collectMDMA():
+	slotnumber = (slotnumber + 1)
+	item_name = "MDMAdrank"
+	was_item_collected = true
 
 
 func _on_hurtbox_area_entered(area):
 	if "enemi_hitbox" in area.name:
 		enemi_attack()
-	if "leandrank" in area.name && slotnumber < 4 :
+	if "leandrank" in area.name && slotnumber < 4 && was_item_collected == false:
 		area.collectlean()
 		collectlean()
-	if "xannydrank" in area.name && slotnumber < 4 :
+	if "xannydrank" in area.name && slotnumber < 4 && was_item_collected == false:
 		area.collectxanny()
 		collectxanny()
-		
+	if "MDMAdrank" in area.name && slotnumber < 4 && was_item_collected == false:
+		area.collectMDMA()
+		collectMDMA()
 	
