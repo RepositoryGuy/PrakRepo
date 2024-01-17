@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://jlhugcjewelo"]
+[gd_scene load_steps=7 format=3 uid="uid://jlhugcjewelo"]
 
 [ext_resource type="PackedScene" uid="uid://d1arpjvqpx162" path="res://skripte/character_body_2d.tscn" id="1_7ev8y"]
 [ext_resource type="PackedScene" uid="uid://bphupf784l1gx" path="res://skripte/enemi.tscn" id="2_tqc1u"]
+[ext_resource type="PackedScene" uid="uid://busi5vx80lqt8" path="res://collectables/leandrank.tscn" id="3_fujqf"]
+[ext_resource type="PackedScene" uid="uid://0h3fcuatwe86" path="res://inventory/items/xannydrank.tscn" id="4_qgcoh"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xnywt"]
+resource_name = "Collectables"
+scenes/1/scene = ExtResource("3_fujqf")
 
 [sub_resource type="TileSet" id="TileSet_l0p2d"]
 tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetScenesCollectionSource_xnywt")
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,9 +19,32 @@ tile_size = Vector2i(64, 64)
 position = Vector2(340, 292)
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(0, -1)
 tile_set = SubResource("TileSet_l0p2d")
 format = 2
+layer_0/name = "collectables"
+layer_0/tile_data = PackedInt32Array(65539, 0, 65536)
 
 [node name="enemi" parent="." instance=ExtResource("2_tqc1u")]
 position = Vector2(811, 335)
 metadata/_edit_group_ = true
+
+[node name="leandrank" parent="." instance=ExtResource("3_fujqf")]
+position = Vector2(368, 166)
+scale = Vector2(0.942308, 1.02051)
+metadata/_edit_group_ = true
+
+[node name="leandrank2" parent="." instance=ExtResource("3_fujqf")]
+position = Vector2(229, 177)
+
+[node name="leandrank3" parent="." instance=ExtResource("3_fujqf")]
+position = Vector2(160, 234)
+
+[node name="leandrank4" parent="." instance=ExtResource("3_fujqf")]
+position = Vector2(335, 32)
+
+[node name="leandrank5" parent="." instance=ExtResource("3_fujqf")]
+position = Vector2(107, 41)
+
+[node name="xannydrank" parent="." instance=ExtResource("4_qgcoh")]
+position = Vector2(224, 328)
