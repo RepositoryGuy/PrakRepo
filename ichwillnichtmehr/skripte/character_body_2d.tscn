@@ -8,10 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://651vldd0xus0" path="res://inventory/leandrank_inventory.tscn" id="6_3j2sg"]
 [ext_resource type="PackedScene" uid="uid://dbpv42spacp3n" path="res://inventory/items/xanny_drank_inventory.tscn" id="7_issje"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g42si"]
-radius = 21.0
-height = 52.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_tngol"]
 atlas = ExtResource("2_3wfrk")
 region = Rect2(0, 0, 192, 192)
@@ -317,14 +313,15 @@ _data = {
 "hitboxkommwieder": SubResource("Animation_hbjp6")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g42si"]
+radius = 6.99998
+height = 36.0
+
 [node name="player" type="CharacterBody2D"]
 position = Vector2(508, 234)
+collision_layer = 3
 script = ExtResource("1_ydqq4")
 inventory = ExtResource("2_a7gtc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_g42si")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
@@ -369,6 +366,7 @@ libraries = {
 }
 
 [node name="hurtbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 z_index = 2
@@ -389,6 +387,11 @@ offset_bottom = 40.0
 script = ExtResource("5_eupei")
 
 [node name="speed_potion" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 22)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g42si")
 
 [node name="leandrankInventory1" parent="." instance=ExtResource("6_3j2sg")]
 visible = false
@@ -425,8 +428,8 @@ position = Vector2(-490, 100)
 
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
-[connection signal="timeout" from="regin_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]
+[connection signal="timeout" from="regin_timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="sword_hitbox_position/hitbox_player" to="." method="_on_hitbox_player_body_entered"]
 [connection signal="body_exited" from="sword_hitbox_position/hitbox_player" to="." method="_on_hitbox_player_body_exited"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

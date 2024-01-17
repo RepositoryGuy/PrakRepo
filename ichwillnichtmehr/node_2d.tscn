@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://jlhugcjewelo"]
+[gd_scene load_steps=8 format=3 uid="uid://jlhugcjewelo"]
 
 [ext_resource type="PackedScene" uid="uid://d1arpjvqpx162" path="res://skripte/character_body_2d.tscn" id="1_7ev8y"]
 [ext_resource type="PackedScene" uid="uid://bphupf784l1gx" path="res://skripte/enemi.tscn" id="2_tqc1u"]
 [ext_resource type="PackedScene" uid="uid://busi5vx80lqt8" path="res://collectables/leandrank.tscn" id="3_fujqf"]
 [ext_resource type="PackedScene" uid="uid://0h3fcuatwe86" path="res://inventory/items/xannydrank.tscn" id="4_qgcoh"]
+[ext_resource type="PackedScene" uid="uid://8qubfqkykvlq" path="res://LakeFallus.tscn" id="5_tdhpi"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xnywt"]
 resource_name = "Collectables"
@@ -16,16 +17,19 @@ sources/0 = SubResource("TileSetScenesCollectionSource_xnywt")
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_7ev8y")]
+z_index = 15
 position = Vector2(340, 292)
+collision_layer = 1
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(0, -1)
+position = Vector2(-391, 711)
 tile_set = SubResource("TileSet_l0p2d")
 format = 2
 layer_0/name = "collectables"
 layer_0/tile_data = PackedInt32Array(65539, 0, 65536)
 
 [node name="enemi" parent="." instance=ExtResource("2_tqc1u")]
+z_index = 15
 position = Vector2(811, 335)
 metadata/_edit_group_ = true
 
@@ -48,3 +52,6 @@ position = Vector2(107, 41)
 
 [node name="xannydrank" parent="." instance=ExtResource("4_qgcoh")]
 position = Vector2(224, 328)
+
+[node name="Node2D" parent="." instance=ExtResource("5_tdhpi")]
+position = Vector2(-1361, 350)

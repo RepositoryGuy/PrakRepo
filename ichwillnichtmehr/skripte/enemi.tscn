@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cp65lhwlgy5sg" path="res://Tiny Swords (2)/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Red/Torch_Red.png" id="2_m5r4x"]
 [ext_resource type="PackedScene" uid="uid://busi5vx80lqt8" path="res://collectables/leandrank.tscn" id="3_64h7h"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8kldq"]
+radius = 21.0
+height = 52.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_a1i1n"]
 atlas = ExtResource("2_m5r4x")
 region = Rect2(0, 0, 192, 192)
@@ -380,10 +384,6 @@ animations = [{
 "speed": 10.2
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8kldq"]
-radius = 21.0
-height = 52.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_syrhc"]
 radius = 29.0172
 
@@ -453,14 +453,14 @@ _data = {
 [node name="enemi" type="CharacterBody2D"]
 script = ExtResource("1_axgse")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 3)
+shape = SubResource("CapsuleShape2D_8kldq")
+
 [node name="bla" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ljp2f")
 animation = &"swing"
 frame_progress = 0.862004
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 3)
-shape = SubResource("CapsuleShape2D_8kldq")
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
 wait_time = 0.55
