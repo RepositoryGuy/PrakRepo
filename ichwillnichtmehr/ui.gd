@@ -21,3 +21,8 @@ func on_game_over():
 
 func _on_restart_button_pressed():
 	get_tree().reload_current_scene()
+
+
+
+func _on_play_button_pressed():
+	pass
