@@ -27,6 +27,8 @@ var was_item_collected = false
 var item_name = "none"
 var speed = 350
 
+var toke_damage = false
+
 var damage_enemi = 20
 
 var slotnumber = 0
@@ -37,12 +39,16 @@ var attack_ip = false
 
 @export var inventory: Inventory
 
-
+var healshit = true
 
 func _physics_process(delta):
 	player_movement(delta)
 	attack() 
 	update_health()
+	
+	if healshit == true:
+		heal()
+	
 	
 	if was_item_collected == true:
 		if Input.is_action_just_pressed("slot1") && slot1 == false:
@@ -137,7 +143,7 @@ func _physics_process(delta):
 				speed = 600 - 1
 				speedpotion = true 
 			if item_slot3 == "xannydrank":
-				$XannydrankInventory1.visible = false
+				$XannydrankInventory3.visible = false
 				var ref_a = get_tree().current_scene.get_node("enemi")
 				ref_a.power_up()
 			if item_slot3 == "MDMAdrank":
@@ -154,7 +160,7 @@ func _physics_process(delta):
 				speed = 600
 				speedpotion = true
 			if item_slot4 == "xannydrank":
-				$XannydrankInventory1.visible = false
+				$XannydrankInventory4.visible = false
 				var ref_a = get_tree().current_scene.get_node("enemi")
 				ref_a.power_up()
 			if item_slot4 == "MDMAdrank":
@@ -269,7 +275,13 @@ func enemi_attack():
 			self.queue_free()
 		await get_tree().create_timer(0.7).timeout
 		enemi_attack_cooldown = true
+		toke_damage = true
+		tokedamage()
+		
 
+func tokedamage():
+	await get_tree().create_timer(14).timeout
+	toke_damage = false
 
 func attack():
 	var dir = current_dir
@@ -318,13 +330,20 @@ func update_health():
 	else:
 		healthbar.visible = true
 	
-func _on_regin_timer_timeout():
-	if health < 100:
-		health = health + 20
-		if health > 100:
-			health = 100
-	if health <= 0:
-		health = 0
+func heal():
+	healshit = false 
+	await get_tree().create_timer(5).timeout
+	if toke_damage == true:
+		pass
+		healshit = true
+	else:
+		if health < 100:
+			health = health + 20
+			if health > 100:
+				health = 100
+		if health <= 0:
+			health = 0
+		healshit = true
 
 
 func collectlean():
