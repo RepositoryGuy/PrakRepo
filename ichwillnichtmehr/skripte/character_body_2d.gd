@@ -12,6 +12,8 @@ var armorpotion = false
 
 @onready var power = 20
 
+var dead = true
+
 var slot1 = false
 var slot2 = false
 var slot3 = false
@@ -25,8 +27,12 @@ var item_slot4 = "none"
 var was_item_collected = false
 
 var item_name = "none"
-var speed = 350
+var speed = 220
+var acceleration =1500
+var friction = 1200
 
+var axis = Vector2.ZERO
+var restart_possible = false
 var toke_damage = false
 
 var damage_enemi = 20
@@ -43,11 +49,17 @@ var healshit = true
 
 func _physics_process(delta):
 	player_movement(delta)
-	attack() 
+	if dead == false:
+		attack() 
 	update_health()
-	
+	if attack_ip == false && dead == false:
+		move(delta)
+	if dead == true:
+		yourdead()
 	if healshit == true:
 		heal()
+	if restart_possible == true && Input.is_action_just_pressed("swing"):
+		alive()
 	
 	
 	if was_item_collected == true:
@@ -106,7 +118,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("slot1"):
 			if item_slot1 == "leandrank":
 				$leandrankInventory1.visible = false
-				speed = 600
+				speed = 320
 				speedpotion = true 
 			if item_slot1 == "xannydrank":
 				$XannydrankInventory1.visible = false
@@ -123,7 +135,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("slot2"):
 			if item_slot2 == "leandrank":
 				$leandrankInventory2.visible = false
-				speed = 600
+				speed = 320
 				speedpotion = true 
 			if item_slot2 == "xannydrank":
 				$XannydrankInventory2.visible = false
@@ -140,7 +152,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("slot3"):
 			if item_slot3 == "leandrank":
 				$leandrankInventory3.visible = false
-				speed = 600 - 1
+				speed = 320
 				speedpotion = true 
 			if item_slot3 == "xannydrank":
 				$XannydrankInventory3.visible = false
@@ -157,7 +169,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("slot4"):
 			if item_slot4 == "leandrank":
 				$leandrankInventory4.visible = false
-				speed = 600
+				speed = 320
 				speedpotion = true
 			if item_slot4 == "xannydrank":
 				$XannydrankInventory4.visible = false
@@ -177,55 +189,71 @@ func _physics_process(delta):
 	if health <= 0:
 		player_alive = false
 		health = 0
-		print("du bist tot digga opfer 3$ to revive")
-		self.queue_free()
+		dead = true
 		
 func armor_potion_end():
 	armorpotion = false
 	damage_enemi = 10
-	await get_tree().create_timer(30).timeout
+	await get_tree().create_timer(20).timeout
 	damage_enemi = 20
-	
 
+func yourdead():
+	$AnimatedSprite2D.visible = false
+	$healthbar.visible = false
+	restart_possible = true
+	
+func alive():
+	$AnimatedSprite2D.visible = true
+	dead = false
+	$healthbar.visible = true
+	restart_possible = false
+	health = 100
 
 func speed_potion_end():
 	speedpotion = false
 	$Camera2D.zoom.x = 0.8
 	$Camera2D.zoom.y = 0.8
-	await get_tree().create_timer(10).timeout
-	speed = 350
+	await get_tree().create_timer(7).timeout
+	speed = 220
 	$Camera2D.zoom.x = 1
 	$Camera2D.zoom.y = 1
 	print("eeee")
 	
+	
+func move(delta):
+	
+	var input_vector = Input.get_vector("left", "right", "up", "down")
+	if input_vector == Vector2.ZERO:
+		apply_friction(friction * delta)
+	else:
+		apply_movement(input_vector * acceleration * delta)
+	move_and_slide()
 
+func apply_friction(amount) -> void:
+	if velocity.length() > amount:
+		velocity -= velocity.normalized() * amount
+	else:
+		velocity = Vector2.ZERO
+		
+func apply_movement(amount) -> void:
+	velocity += amount
+	velocity = velocity.limit_length(speed)
 func player_movement(delta):
 	if attack_ip == false:
 		if Input.is_action_pressed("right"):
 			current_dir = "right"
 			play_anim(1)
-			velocity.x = speed
-			velocity.y = 0
 		elif Input.is_action_pressed("left"):
 			current_dir = "left"
 			play_anim(1)
-			velocity.x = -speed
-			velocity.y = 0
 		elif Input.is_action_pressed("up"):
 			current_dir = "up"
 			play_anim(1)
-			velocity.x = 0
-			velocity.y = -speed
 		elif Input.is_action_pressed("down"):
 			current_dir = "down"
 			play_anim(1)
-			velocity.x = 0
-			velocity.y = speed
 		else:
 			play_anim(0)
-			velocity.x = 0
-			velocity.y = 0
-		
 		move_and_slide()
 	
 func play_anim(moving):
@@ -271,8 +299,6 @@ func enemi_attack():
 		health = health - damage_enemi
 		enemi_attack_cooldown = false
 		print("health =", health)
-		if health <= 0:
-			self.queue_free()
 		await get_tree().create_timer(0.7).timeout
 		enemi_attack_cooldown = true
 		toke_damage = true
