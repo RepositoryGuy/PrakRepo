@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://jlhugcjewelo"]
+[gd_scene load_steps=9 format=3 uid="uid://jlhugcjewelo"]
 
 [ext_resource type="PackedScene" uid="uid://d1arpjvqpx162" path="res://skripte/character_body_2d.tscn" id="1_7ev8y"]
 [ext_resource type="PackedScene" uid="uid://bphupf784l1gx" path="res://skripte/enemi.tscn" id="2_tqc1u"]
 [ext_resource type="PackedScene" uid="uid://busi5vx80lqt8" path="res://collectables/leandrank.tscn" id="3_fujqf"]
 [ext_resource type="PackedScene" uid="uid://0h3fcuatwe86" path="res://inventory/items/xannydrank.tscn" id="4_qgcoh"]
 [ext_resource type="PackedScene" uid="uid://8qubfqkykvlq" path="res://LakeFallus.tscn" id="5_xytk7"]
+[ext_resource type="PackedScene" uid="uid://b1mari1o6cpl0" path="res://ui.tscn" id="6_35con"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xnywt"]
 resource_name = "Collectables"
@@ -55,3 +56,5 @@ position = Vector2(224, 328)
 
 [node name="Node2D" parent="." instance=ExtResource("5_xytk7")]
 position = Vector2(215, 358)
+
+[node name="ui" parent="." instance=ExtResource("6_35con")]

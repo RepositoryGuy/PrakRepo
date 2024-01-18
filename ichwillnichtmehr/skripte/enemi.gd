@@ -15,6 +15,10 @@ var enemi
 
 @onready var leandrank = $leandrank
 @onready var itemRes: InventoryItem
+#onready-variable für ui.tscn
+@onready var ui = $"../ui"
+var points = 0
+
 
 var attackiert = false
 
@@ -41,6 +45,10 @@ func _physics_process(delta):
 			if player.position.x == null:
 				return
 			if player.position.y == null:
+				return
+			if position.x == null:
+				return
+			if position.y == null:
 				return
 			if (player.position.x < position.x):
 				$bla.flip_h = true
@@ -144,6 +152,8 @@ func death():
 	$bla.visible = false
 	$CollisionShape2D.disabled = true
 	$healthbar.visible = false
+	points += 1
+	ui.update_points(points)
 
 func _on_area_2d_area_entered(area):
 	if "hitbox_player" in area.name:

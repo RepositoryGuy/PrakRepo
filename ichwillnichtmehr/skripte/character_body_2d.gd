@@ -10,6 +10,8 @@ var powerpotion = false
 var speedpotion = false
 
 @onready var power = 20
+#onready-variable für ui.tscn
+@onready var ui = $"../ui"
 
 var slot1 = false
 var slot2 = false
@@ -152,7 +154,7 @@ func _physics_process(delta):
 		player_alive = false
 		health = 0
 		print("du bist tot digga opfer 3$ to revive")
-		self.queue_free()
+		#self.queue_free()
 		
 
 func speed_potion_end():
@@ -236,7 +238,9 @@ func enemi_attack():
 		enemi_attack_cooldown = false
 		print("health =", health)
 		if health <= 0:
-			self.queue_free()
+			#self.queue_free()
+			#Funktion in ui.tscn
+			ui.on_game_over()
 		await get_tree().create_timer(0.7).timeout
 		enemi_attack_cooldown = true
 
