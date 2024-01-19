@@ -32,10 +32,11 @@ func _physics_process(delta):
 		death()
 	
 	if player_chase && dead == false:
+		$AnimationPlayer.play("idle")
 		if attackiert == true:
 			await get_tree().create_timer(1.8).timeout
-		else:
-			if attackiert == false:
+	if player_chase == true && dead == false:
+			if attackiert == false && dead == false:
 				position += (player.position - position)/speed
 				$bla.play("run")
 			
@@ -87,8 +88,8 @@ func _physics_process(delta):
 			$bla.play("idle")
 
 func _on_chase_body_entered(body):
-	player = body
-	player_chase = true
+		player = body
+		player_chase = true
 
 func _on_chase_body_exited(body):
 	player = null
@@ -142,19 +143,23 @@ func death():
 	$AnimationPlayer.play("hitboxgehweg")
 	var itemdrop = randf_range(0, 30)
 	if (itemdrop >= 0 && itemdrop < 12 ):
+		$AnimationPlayer.play("hitboxgehweg")
 		await get_tree().create_timer(1.5).timeout
 		self.queue_free()
 	if (itemdrop >= 12 && itemdrop < 18 ):
+		$AnimationPlayer.play("hitboxgehweg")
 		await get_tree().create_timer(1).timeout
 		$leandrank.monitorable = true
 		$leandrank.visible= true
 		print("lean")
 	if (itemdrop >= 18 && itemdrop < 24 ):
+		$AnimationPlayer.play("hitboxgehweg")
 		await get_tree().create_timer(1).timeout
 		$xannydrank.monitorable = true
 		$xannydrank.visible = true
 		print("xanny")
 	if (itemdrop >= 24 && itemdrop < 30 ):
+		$AnimationPlayer.play("hitboxgehweg")
 		await get_tree().create_timer(1).timeout
 		$MDMAdrank.monitorable = true
 		$MDMAdrank.visible = true
@@ -183,4 +188,7 @@ func _on_xannydrank_body_entered(body):
 	if "player" in body.name:
 		await get_tree().create_timer(0.3).timeout
 		self.queue_free()
+
+func _on_despawn_body_exited(body):
+	self.queue_free()
 

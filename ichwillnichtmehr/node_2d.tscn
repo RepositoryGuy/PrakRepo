@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://jlhugcjewelo"]
+[gd_scene load_steps=9 format=3 uid="uid://jlhugcjewelo"]
 
+[ext_resource type="Script" path="res://world.gd" id="1_1sujt"]
 [ext_resource type="PackedScene" uid="uid://d1arpjvqpx162" path="res://skripte/character_body_2d.tscn" id="1_7ev8y"]
 [ext_resource type="PackedScene" uid="uid://bphupf784l1gx" path="res://skripte/enemi.tscn" id="2_tqc1u"]
 [ext_resource type="PackedScene" uid="uid://busi5vx80lqt8" path="res://collectables/leandrank.tscn" id="3_fujqf"]
@@ -15,6 +16,7 @@ tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetScenesCollectionSource_xnywt")
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_1sujt")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_7ev8y")]
 position = Vector2(340, 292)
