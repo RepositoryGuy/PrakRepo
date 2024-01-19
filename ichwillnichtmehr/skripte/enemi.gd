@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@onready var ui = $"../ui"
+var points = 0
+
 var speed = 65
 var player_chase = false
 var player = null
@@ -138,6 +141,8 @@ func power_up():
 
 func death():
 	dead = true
+	points += 1
+	ui.update_points(points)
 	$bla.play("death")
 	$AnimationPlayer.play("hitboxgehweg")
 	var itemdrop = randf_range(0, 30)

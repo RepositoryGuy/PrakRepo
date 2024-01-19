@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var ui = $"../ui"
+
 var enemi_attackrange = false
 var enemi_attack_cooldown = true
 var health = 100
@@ -12,7 +14,7 @@ var armorpotion = false
 
 @onready var power = 20
 
-var dead = true
+var dead = false
 
 var slot1 = false
 var slot2 = false
@@ -50,12 +52,14 @@ var healshit = true
 func _physics_process(delta):
 	player_movement(delta)
 	if dead == false:
+		ui.during_game()
 		attack() 
 	update_health()
 	if attack_ip == false && dead == false:
 		move(delta)
 	if dead == true:
 		yourdead()
+		ui.on_game_over()
 	if healshit == true:
 		heal()
 	if restart_possible == true && Input.is_action_just_pressed("swing"):
