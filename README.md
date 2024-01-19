@@ -1,1 +1,0 @@
-Dies ist unsere README-Datei.

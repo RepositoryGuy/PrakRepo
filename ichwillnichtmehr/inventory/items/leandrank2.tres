@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://b8k6dnds1jild"]
-
-[ext_resource type="Script" path="res://inventory/inventoryitem.gd" id="1_lf1mc"]
-[ext_resource type="Texture2D" uid="uid://bda3416tlmjvn" path="res://ilustrador-pocion-vector-pixeles_685023-2162.png" id="2_glgkx"]
-
-[resource]
-script = ExtResource("1_lf1mc")
-name = "leandrank2"
-texture = ExtResource("2_glgkx")

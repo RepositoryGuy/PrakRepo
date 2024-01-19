@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=3 format=3 uid="uid://c4qr3j4djek1y"]
-
-[ext_resource type="Resource" uid="uid://0syhyg1el5e" path="res://inventory/items/leandrank.tres" id="1_huchw"]
-[ext_resource type="Script" path="res://inventory/inventory.gd" id="2_tgel1"]
-
-[resource]
-script = ExtResource("2_tgel1")
-items = Array[Resource("res://inventory/inventoryitem.gd")]([ExtResource("1_huchw"), ExtResource("1_huchw"), null, null, null, null, ExtResource("1_huchw"), null, ExtResource("1_huchw"), null])
-size = []
