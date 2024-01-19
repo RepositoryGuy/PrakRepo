@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://651vldd0xus0"]
+
+[ext_resource type="Texture2D" uid="uid://bda3416tlmjvn" path="res://ilustrador-pocion-vector-pixeles_685023-2162.png" id="1_20oqy"]
+
+[node name="leandrankInventory1" type="Marker2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 20
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(0.057508, 0.0543131)
+texture = ExtResource("1_20oqy")
