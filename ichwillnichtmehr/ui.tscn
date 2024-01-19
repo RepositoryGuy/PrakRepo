@@ -8,6 +8,7 @@
 script = ExtResource("1_i0gqv")
 
 [node name="end_of_game_screen" type="Node2D" parent="."]
+visible = false
 
 [node name="RestartButton" type="Button" parent="end_of_game_screen"]
 offset_left = 510.0
@@ -72,12 +73,13 @@ scale = Vector2(3, 3)
 text = "0"
 
 [node name="before_game_screen" type="Node2D" parent="."]
+visible = false
 
 [node name="PlayButton" type="Button" parent="before_game_screen"]
 offset_right = 8.0
 offset_bottom = 8.0
 
 [connection signal="pressed" from="end_of_game_screen/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="end_of_game_screen/DeadQuitButton" to="." method="_on_dead_quit_button_pressed"]
 [connection signal="pressed" from="end_of_game_screen/DeadQuitButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="end_of_game_screen/DeadQuitButton" to="." method="_on_dead_quit_button_pressed"]
 [connection signal="pressed" from="before_game_screen/PlayButton" to="." method="_on_play_button_pressed"]

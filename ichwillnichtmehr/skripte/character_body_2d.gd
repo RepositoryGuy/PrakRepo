@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@onready var ui = $"../ui"
 
 var enemi_attackrange = false
 var enemi_attack_cooldown = true
@@ -12,7 +13,7 @@ var armorpotion = false
 
 @onready var power = 20
 
-var dead = true
+var dead = false
 
 var slot1 = false
 var slot2 = false
@@ -190,6 +191,7 @@ func _physics_process(delta):
 		player_alive = false
 		health = 0
 		dead = true
+		ui.on_game_over()
 		
 func armor_potion_end():
 	armorpotion = false

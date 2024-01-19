@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://jlhugcjewelo"]
+[gd_scene load_steps=11 format=3 uid="uid://ccsrgxampwvqv"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1sujt"]
 [ext_resource type="PackedScene" uid="uid://d1arpjvqpx162" path="res://skripte/character_body_2d.tscn" id="1_7ev8y"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://busi5vx80lqt8" path="res://collectables/leandrank.tscn" id="3_fujqf"]
 [ext_resource type="PackedScene" uid="uid://0h3fcuatwe86" path="res://inventory/items/xannydrank.tscn" id="4_qgcoh"]
 [ext_resource type="PackedScene" uid="uid://bilsfss8qk3cb" path="res://collectables/mdm_adrank.tscn" id="5_g7tk0"]
+[ext_resource type="PackedScene" uid="uid://8qubfqkykvlq" path="res://LakeFallus.tscn" id="7_fbdph"]
+[ext_resource type="PackedScene" uid="uid://bkgcoab1yax2b" path="res://ui.tscn" id="8_b1fmv"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xnywt"]
 resource_name = "Collectables"
@@ -19,7 +21,8 @@ sources/0 = SubResource("TileSetScenesCollectionSource_xnywt")
 script = ExtResource("1_1sujt")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_7ev8y")]
-position = Vector2(340, 292)
+z_index = 35
+position = Vector2(-7230, -6400)
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(0, -1)
@@ -29,10 +32,12 @@ layer_0/name = "collectables"
 layer_0/tile_data = PackedInt32Array(65539, 0, 65536)
 
 [node name="enemi" parent="." instance=ExtResource("2_tqc1u")]
-position = Vector2(811, 335)
+z_index = 35
+position = Vector2(9694, -2404)
 metadata/_edit_group_ = true
 
 [node name="leandrank" parent="." instance=ExtResource("3_fujqf")]
+z_index = 35
 position = Vector2(368, 166)
 scale = Vector2(0.942308, 1.02051)
 metadata/_edit_group_ = true
@@ -57,3 +62,8 @@ position = Vector2(192, 476)
 
 [node name="MDMAdrank2" parent="." instance=ExtResource("5_g7tk0")]
 position = Vector2(54, 200)
+
+[node name="Node2D" parent="." instance=ExtResource("7_fbdph")]
+position = Vector2(-201, -4)
+
+[node name="ui" parent="." instance=ExtResource("8_b1fmv")]
