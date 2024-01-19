@@ -78,6 +78,6 @@ offset_right = 8.0
 offset_bottom = 8.0
 
 [connection signal="pressed" from="end_of_game_screen/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="end_of_game_screen/DeadQuitButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="end_of_game_screen/DeadQuitButton" to="." method="_on_dead_quit_button_pressed"]
+[connection signal="pressed" from="end_of_game_screen/DeadQuitButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="before_game_screen/PlayButton" to="." method="_on_play_button_pressed"]

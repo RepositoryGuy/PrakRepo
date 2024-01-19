@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://busi5vx80lqt8" path="res://collectables/leandrank.tscn" id="3_fujqf"]
 [ext_resource type="PackedScene" uid="uid://0h3fcuatwe86" path="res://inventory/items/xannydrank.tscn" id="4_qgcoh"]
 [ext_resource type="PackedScene" uid="uid://bilsfss8qk3cb" path="res://collectables/mdm_adrank.tscn" id="5_g7tk0"]
-[ext_resource type="PackedScene" path="res://skripte/ui.tscn" id="6_cht6b"]
+[ext_resource type="PackedScene" uid="uid://bkgcoab1yax2b" path="res://ui.tscn" id="6_ktdvh"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xnywt"]
 resource_name = "Collectables"
@@ -57,4 +57,4 @@ position = Vector2(192, 476)
 [node name="MDMAdrank2" parent="." instance=ExtResource("5_g7tk0")]
 position = Vector2(54, 200)
 
-[node name="ui" parent="." instance=ExtResource("6_cht6b")]
+[node name="ui" parent="." instance=ExtResource("6_ktdvh")]
